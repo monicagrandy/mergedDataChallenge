@@ -1,0 +1,27 @@
+{
+  "name": "hartchallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monicagrandy/mergedDataChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monicagrandy/mergedDataChallenge/issues"
+  },
+  "homepage": "https://github.com/monicagrandy/mergedDataChallenge#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "foursquarevenues": "^2.0.0",
+    "geo.what3words": "^0.2.0",
+    "mongoose": "^4.4.17",
+    "yelp": "^1.0.1"
+  }
+}
