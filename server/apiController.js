@@ -17,9 +17,11 @@ const makeW3W =  new W3W(config.W3WAPIKEY)
 
 module.exports = {
   getInfo: (req, res) => {
-    makeYelp.search({term: 'restaurant', location: 90012})
+    console.log("line 20: ", req.originalUrl)
+    let query = req.originalUrl.toString()
+    makeYelp.search({term: query, location: 90012})
       .then(yelpData => {
-        Foursquare.getVenues({near: 90012, query: 'restaurant'}, (error, venues) => {
+        Foursquare.getVenues({near: 90012, query: query}, (error, venues) => {
             if(!error){
               let dupes = []
               let allYelp = yelpData.businesses
@@ -69,7 +71,7 @@ module.exports = {
                     merged[currPhone].coords = currFS.location.lat.toString() + "," + currFS.location.lng.toString()
                     merged[currPhone].fs_crossStreet = currFS.location.crossStreet
                     merged[currPhone].fs_hasMenu = currFS.hasMenu
-                    merged[currPhone].fs_menuLink = currFS.menu.url
+                    //merged[currPhone].fs_menuLink = currFS.menu.url 
                     merged[currPhone].fs_facebook_username = currFS.contact.facebookUsername
                     merged[currPhone].fs_url = currFS.url
                   }
@@ -80,6 +82,7 @@ module.exports = {
                   position: merged[key].coords
                 }).then(response => {
                   merged[key].words = response
+                  console.log("line 84 merged: ", merged)
                   let restaurant = new RestModel ({
                     name: merged[key].name,
                     yelpRating: merged[key].yelpRating,
@@ -114,7 +117,7 @@ module.exports = {
                 })
               })  
             }
-          setTimeout(()=>{res.json(merged)}, 1000)
+          setTimeout(()=>{res.json(merged)}, 3000)
         }
       })
     })

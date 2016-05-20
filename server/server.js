@@ -15,6 +15,9 @@ console.log('Line 12 Mongoose is running');
 app.use(bodyParser.json())
 app.use('/node', express.static(__dirname + '/../node_modules/'));
 
-app.get('/', apiController.getInfo)
+app.get('/api/search', apiController.getInfo)
+
+app.all('*', apiController.getInfo);
+
 
 module.exports = app;
