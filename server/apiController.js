@@ -18,7 +18,7 @@ const makeW3W =  new W3W(config.W3WAPIKEY)
 module.exports = {
   getInfo: (req, res) => {
     console.log("line 20: ", req.originalUrl)
-    let query = req.originalUrl.toString()
+    let query = req.originalUrl.toString() || 'restaurant'
     makeYelp.search({term: query, location: 90012})
       .then(yelpData => {
         Foursquare.getVenues({near: 90012, query: query}, (error, venues) => {
